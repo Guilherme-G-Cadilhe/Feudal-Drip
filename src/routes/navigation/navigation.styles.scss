@@ -1,5 +1,7 @@
 .navigation {
-  background-color: #fff;
+  padding-right: 40px;
+  padding-left: 20px;
+  background-color: rgb(222, 205, 226);
   height: 80px;
   width: 100%;
   display: flex;
@@ -24,4 +26,5 @@
       cursor: pointer;
     }
   }
+  border-bottom: 2px solid black;
 }
