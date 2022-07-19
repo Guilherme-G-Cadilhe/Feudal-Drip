@@ -28,3 +28,21 @@
   }
   border-bottom: 2px solid black;
 }
+
+.footerNav {
+  margin-top: 30px;
+  width: 100%;
+  position: "fixed";
+  right: 0;
+  bottom: 0;
+  left: 0;
+  text-align: center;
+  padding: 10px;
+  height: 50px;
+  background-color: rgb(222, 205, 226);
+
+  h2 {
+    padding: 0;
+    margin: 0;
+  }
+}

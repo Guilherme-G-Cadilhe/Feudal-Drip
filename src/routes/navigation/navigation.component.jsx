@@ -14,7 +14,9 @@ import "./navigation.styles.scss"
 
 const Footer = () => {
   return (
-    <p>I do not own those images</p>
+    <div className="footerNav">
+      <h2>I do not own those images</h2>
+    </div>
   )
 }
 
