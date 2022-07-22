@@ -29,7 +29,7 @@ const Category = () => {
       </S.CategoryTitleContainer>
       <S.CategoryContainer>
         {
-          products && products.map(product => <S.CardShadow><ProductCard key={product.id} product={product} /></S.CardShadow>)
+          products && products.map(product => <S.CardShadow key={product.id}><ProductCard key={product.id} product={product} /></S.CardShadow>)
         }
       </S.CategoryContainer>
     </S.ContainerShadow>
