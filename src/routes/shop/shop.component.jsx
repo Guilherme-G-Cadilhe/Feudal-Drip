@@ -6,7 +6,7 @@ import Category from '../category/category.component'
 
 // ======= Setting Categories =======
 import { useDispatch } from 'react-redux'
-import { fetchCategoriesStartAsync } from '../../store/categories/categories.action'
+import { fetchCategoriesStart } from '../../store/categories/categories.action'
 
 //import { addCollectionAndDocuments } from '../../utils/firebase/firebase.utils'
 //import SHOP_DATA from '../../shop-data.js';
@@ -20,7 +20,7 @@ const Shop = () => {
   // }, [])
 
   useEffect(() => {
-    dispatch(fetchCategoriesStartAsync());
+    dispatch(fetchCategoriesStart());
   }, []);
 
 
