@@ -11,24 +11,30 @@ import Checkout from './routes/checkout/checkout.component.jsx'
 
 // ======= Setting User =======
 import { useDispatch } from 'react-redux'
-import { onAuthStateChangedListener, createUserDocumentFromAuth } from "./utils/firebase/firebase.utils";
-import { setCurrentUser } from './store/user/user.action'
+// import { onAuthStateChangedListener, createUserDocumentFromAuth, getCurrentUser } from "./utils/firebase/firebase.utils";
+// import { setCurrentUser } from './store/user/user.action'
 
-
+// ====== Setting user Redux-Saga ======
+import { checkUserSession } from './store/user/user.action'
 
 const App = () => {
   const dispatch = useDispatch()
 
-  // ======== USER ========
+  // ======== USER WITH REDUX SAGA========
   useEffect(() => {
-    const unsubscribe = onAuthStateChangedListener(async (user) => {
-      if (user) {
-        await createUserDocumentFromAuth(user)
-      }
-      dispatch(setCurrentUser(user))
-    })
-    return unsubscribe
+    dispatch(checkUserSession())
   }, [])
+
+  // // ======== USER ========
+  // useEffect(() => {
+  //   const unsubscribe = onAuthStateChangedListener(async (user) => {
+  //     if (user) {
+  //       await createUserDocumentFromAuth(user)
+  //     }
+  //     dispatch(setCurrentUser(user))
+  //   })
+  //   return unsubscribe
+  // }, [])
 
 
   return (

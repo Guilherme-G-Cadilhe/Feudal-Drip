@@ -1,10 +1,14 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
+import { useDispatch } from 'react-redux'
+
 import FormInput from '../form-input/form-input.component'
 import Button, { BUTTON_TYPE_CLASSES } from '../button/button.component'
 
-import { signInWithGooglePopup, signInAuthUserWithEmailAndPassword } from '../../utils/firebase/firebase.utils'
+// import { signInWithGooglePopup, signInAuthUserWithEmailAndPassword } from '../../utils/firebase/firebase.utils'
+import { googleSignInStart, emailSignInStart } from '../../store/user/user.action';
+
 
 import './sign-in-form.styles.scss'
 
@@ -15,6 +19,7 @@ let defaultFormFields = {
 
 const SignInForm = () => {
   const navigate = useNavigate()
+  const dispatch = useDispatch()
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
 
@@ -23,18 +28,22 @@ const SignInForm = () => {
   }
 
   const signInWithGoogle = async () => {
-    await signInWithGooglePopup()
-    navigate('/')
+    try {
+      dispatch(googleSignInStart())
+      setTimeout(() => navigate("/"), 3000);
+    } catch (error) {
+      console.log('error', error)
+    }
+
   }
 
   const handleSubmit = async (event) => {
     event.preventDefault()
 
     try {
-      await signInAuthUserWithEmailAndPassword(email, password)
+      dispatch(emailSignInStart(email, password))
       resetFormFields();
-      navigate('/')
-
+      setTimeout(() => navigate("/"), 1000);
     } catch (error) {
       switch (error.code) {
         case "auth/wrong-password":

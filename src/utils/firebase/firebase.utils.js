@@ -62,12 +62,11 @@ export const createUserDocumentFromAuth = async (userAuth, additionalInfo = {}) 
 
   const userDocRef = doc(db, 'users', userAuth.uid)
 
-  const userSnapshot = await getDoc(userDocRef)
+  let userSnapshot = await getDoc(userDocRef)
 
   if (!userSnapshot.exists()) {
     const { displayName, email } = userAuth;
     //const createdAt = new Date()
-
     try {
       await setDoc(userDocRef, {
         displayName,
@@ -76,12 +75,15 @@ export const createUserDocumentFromAuth = async (userAuth, additionalInfo = {}) 
         ...additionalInfo
       })
 
+      userSnapshot = await getDoc(userDocRef)
+
     } catch (error) {
       console.log('error creating the user', error)
       throw error
     }
   }
-  return userDocRef
+  // return userDocRef
+  return userSnapshot
 }
 
 export const createAuthUserWithEmailAndPassword = async (email, password) => {
@@ -99,3 +101,17 @@ export const signInAuthUserWithEmailAndPassword = async (email, password) => {
 export const signOutUser = async () => await signOut(auth)
 
 export const onAuthStateChangedListener = (callback) => onAuthStateChanged(auth, callback)
+
+// REDUX SAGA CHANGES
+export const getCurrentUser = () => {
+  return new Promise((resolve, reject) => {
+    const unsubscribe = onAuthStateChanged(
+      auth,
+      (userAuth) => {
+        unsubscribe();
+        resolve(userAuth);
+      },
+      reject
+    )
+  })
+}

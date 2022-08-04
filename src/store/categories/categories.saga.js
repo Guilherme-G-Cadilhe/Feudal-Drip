@@ -19,6 +19,7 @@ export function* fetchCategoriesAsync() {
 }
 
 export function* onFetchCategories() {
+  // takeLatest = Pega ultima ação disparada para o Dispatch, do tipo especificado.
   yield takeLatest(CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_START, fetchCategoriesAsync)
 }
 

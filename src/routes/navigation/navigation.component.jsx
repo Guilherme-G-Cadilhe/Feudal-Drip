@@ -6,7 +6,8 @@ import CartDropdown from '../../components/cart-dropdown/cart-dropdown.component
 
 import { ReactComponent as FeudalLogo } from '../../assets/crown.svg'
 
-import { signOutUser } from '../../utils/firebase/firebase.utils'
+import { signOutStart } from '../../store/user/user.action'
+import { useDispatch } from 'react-redux'
 
 import {
   NavigationContainer,
@@ -22,6 +23,7 @@ import { useSelector } from 'react-redux';
 import { selectCurrentUser } from '../../store/user/user.selector';
 import * as CartSelector from '../../store/cart/cart.selector';
 
+
 const Footer = () => {
   return (
     <FooterNav>
@@ -33,6 +35,15 @@ const Footer = () => {
 const Navigation = () => {
   const currentUser = useSelector(selectCurrentUser)
   const isCartOpen = useSelector(CartSelector.selectIsCartOpen)
+  const dispatch = useDispatch()
+
+  const userSignOut = async () => {
+    try {
+      dispatch(signOutStart())
+    } catch (error) {
+      console.log('error', error)
+    }
+  }
 
   return (
     <Fragment>
@@ -47,7 +58,7 @@ const Navigation = () => {
           </NavLink>
           {
             currentUser ? (
-              <NavLink as="span" onClick={signOutUser}> SIGN OUT</NavLink>
+              <NavLink as="span" onClick={userSignOut}> SIGN OUT</NavLink>
             ) : (
               <NavLink to='/auth'>
                 SIGN IN
