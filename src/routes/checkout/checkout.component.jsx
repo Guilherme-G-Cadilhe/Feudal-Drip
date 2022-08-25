@@ -1,5 +1,8 @@
 import CheckoutItem from '../../components/checkout-item/checkout-item.component'
 
+// ======== Stripe ========
+import PaymentForm from '../../components/payment-form/payment-form.component'
+
 import * as S from './checkout.styles.jsx'
 
 // Redux
@@ -31,6 +34,7 @@ const Checkout = () => {
       </S.CheckoutHeader>
       {cartItems.map((cartItem) => <CheckoutItem key={cartItem.id} cartItem={cartItem} />)}
       <S.Total>Total: BRL ${cartTotal}</S.Total>
+      <PaymentForm />
     </S.CheckoutContainer>
   )
 }

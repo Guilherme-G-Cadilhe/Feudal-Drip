@@ -9,11 +9,15 @@ import { Provider } from 'react-redux';
 import { store, persistor } from '../src/store/store'
 
 
-///======== Estilos ========
+// ======== Estilos ========
 import "./global.styles.scss"
 
-//Persist
+// ======== Persist ========
 import { PersistGate } from 'redux-persist/integration/react'
+
+//  ======== Stripe ========
+import { Elements } from '@stripe/react-stripe-js'
+import { stripePromise } from './utils/stripe/stripe.utils'
 
 
 // ======== Aplicação ========
@@ -22,7 +26,9 @@ ReactDOM.render(
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <BrowserRouter>
-          <App />
+          <Elements stripe={stripePromise}>
+            <App />
+          </Elements>
         </BrowserRouter>
       </PersistGate>
     </Provider>
