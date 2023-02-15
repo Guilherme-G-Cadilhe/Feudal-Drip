@@ -8,7 +8,7 @@ import Button from '../button/button.component'
 // import { useSelector } from 'react-redux';
 // import { selectCurrentUser } from '../../store/user/user.selector';
 
-import { signUpStart } from '../../store/user/user.action.js'
+import { signUpStart } from '../../store/user/user.action'
 
 import './sign-up-form.styles.scss'
 
