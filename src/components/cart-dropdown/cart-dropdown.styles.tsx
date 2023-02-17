@@ -1,8 +1,8 @@
-import styled from 'styled-components';
-import * as S from '../button/button.styles'
+import styled from "styled-components";
+import * as S from "../button/button.styles";
 
 export const CartDropdownContainer = styled.div`
- position: absolute;
+  position: absolute;
   width: 240px;
   height: 340px;
   display: flex;
@@ -20,15 +20,19 @@ export const CartDropdownContainer = styled.div`
     font-size: 12px;
     margin-top: auto;
   }
-`
+`;
 
 export const EmptyMessage = styled.span`
-font-size: 18px;
-margin: 50px auto;
-`
-export const CartItems = styled.div`
+  font-size: 18px;
+  margin: 50px auto;
+`;
+export type CartItemsScroll = {
+  scroll?: number;
+};
+
+export const CartItems = styled.div<CartItemsScroll>`
   height: 240px;
   display: flex;
   flex-direction: column;
-  overflow-y: ${props => props.scroll ? "scroll" : "hidden"};
-`
+  overflow-y: ${(props) => (props.scroll ? "scroll" : "hidden")};
+`;
