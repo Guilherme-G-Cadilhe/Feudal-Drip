@@ -18,6 +18,9 @@ import { useDispatch } from 'react-redux'
 // ====== Setting user Redux-Saga ======
 import { checkUserSession } from './store/user/user.action'
 
+// ====== Setting GlobalStyles with styled-components ======
+import { GlobalStyle } from "./global.styles";
+
 const Navigation = lazy(() => import('./routes/navigation/navigation.component'))
 const Checkout = lazy(() => import('./routes/checkout/checkout.component'))
 const Authentication = lazy(() => import('./routes/authentication/authentication.component'))
@@ -46,6 +49,7 @@ const App = () => {
 
   return (
     <Suspense fallback={<Spinner />}>
+      <GlobalStyle />
       <Routes>
         <Route path="/" element={<Navigation />}>
           <Route index element={<Home />} />

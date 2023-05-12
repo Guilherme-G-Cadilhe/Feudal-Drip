@@ -10,7 +10,7 @@ import { store, persistor } from '../src/store/store'
 
 
 // ======== Estilos ========
-import "./global.styles.scss"
+// import "./global.styles.js"
 
 // ======== Persist ========
 import { PersistGate } from 'redux-persist/integration/react'
@@ -18,6 +18,9 @@ import { PersistGate } from 'redux-persist/integration/react'
 //  ======== Stripe ========
 import { Elements } from '@stripe/react-stripe-js'
 import { stripePromise } from './utils/stripe/stripe.utils'
+
+// ======== PWA ========
+import * as serviceWorkerRegistration from './serviceWorkerRegistration'
 
 
 // ======== Aplicação ========
@@ -35,4 +38,6 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root')
 );
+
+serviceWorkerRegistration.register();
 
