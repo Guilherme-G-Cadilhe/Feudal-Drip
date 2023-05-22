@@ -1,5 +1,9 @@
-import * as S from './spinner.styles'
+import * as S from "./spinner.styles";
 
-const Spinner = () => <S.SpinnerOverlay><S.SpinnerContainer /></S.SpinnerOverlay>
+const Spinner = () => (
+  <S.SpinnerOverlay data-testid="spinner">
+    <S.SpinnerContainer />
+  </S.SpinnerOverlay>
+);
 
-export default Spinner
+export default Spinner;
